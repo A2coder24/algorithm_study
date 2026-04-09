@@ -4,7 +4,7 @@ title: 博客搭建过程
 
 ## 记录自己怎么从零开始搭建一个简单的博客。
 
-使用 hexo 框架，文件托管在 Github，Netlify 部署网站，国内访问使用 Cloudflare 进行 CSDN 加速。整个过程不需要服务器，备案，只需要一个域名。
+使用 hexo 框架，文件托管在 Github，Netlify 部署网站，国内访问使用 Cloudflare 进行 CDN 加速。整个过程不需要服务器，备案，只需要一个域名。
 
 下面介绍博客搭建的过程，以及工具及其用法。
 
@@ -17,7 +17,7 @@ title: 博客搭建过程
 ### 介绍
 
 ![](../asset/hexo_1.png)
-hexo 基于 Nodejs 的静态网页生成框架，它支持 Markdown 语法，编辑简单，能够快速生成 html 文件，不如简单，兼容性强
+hexo 基于 Nodejs 的静态网页生成框架，它支持 Markdown 语法，编辑简单，能够快速生成 html 文件，部署简单，兼容性强
 
 ### 环境配置
 
@@ -38,7 +38,7 @@ nvm install 22
 
 > 注: 使用 Ubuntu 自带的 apt 或 apt-get 包管理系统，会导致系统无法拉起 GNOME 桌面，建议使用官方下载
 
-输入一下命令，验证是否安装成功，输出正确版本信息，说明环境配置成功。
+输入以下命令，验证是否安装成功，输出正确版本信息，说明环境配置成功。
 
 ```bash
 # Verify the Node.js version:
@@ -113,7 +113,7 @@ tree -L 1
 ├── public
 ├── scaffolds
 ├── source
-└── theme
+└── themes
 ```
 
 简单说明一下各文件含义：
