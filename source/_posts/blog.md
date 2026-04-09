@@ -6,22 +6,22 @@ title: 博客搭建过程
 
 使用 hexo 框架，文件托管在 Github，Netlify 部署网站，国内访问使用 Cloudflare 进行 CDN 加速。整个过程不需要服务器，备案，只需要一个域名。
 
-下面介绍博客搭建的过程，以及工具及其用法。
+下面介绍博客搭建的过程，工具及其用法。
 
 ## 使用的工具和环境
 
-在虚拟机上进行博客搭建的，操作系统是 Ubuntu 22.04.5 LTS。怎么使用虚拟机、装 Ubuntu 系统网络上有很多了，我就不多赘述。
+在 VMware Workstation Pro 虚拟机上进行博客搭建，操作系统是 Ubuntu 22.04.5 LTS。怎么使用虚拟机、安装操作系统网络上有很多了，我就不多赘述。
 
 ## hexo 框架
 
 ### 介绍
 
 ![](../asset/hexo_1.png)
-hexo 基于 Nodejs 的静态网页生成框架，它支持 Markdown 语法，编辑简单，能够快速生成 html 文件，部署简单，兼容性强
+hexo 是基于 Nodejs 的静态网页生成框架，它支持 Markdown 语法，编辑简单，能够快速生成 html 文件，部署简单，兼容性强。
 
 ### 环境配置
 
-使用 hexo 首先需要 Nodejs 环境，搜索官网进行下载，自行选装版本(LTS)。
+使用 hexo 首先需要 Nodejs 环境，搜索官网自行选装版本(LTS)进行下载安装。
 
 ![](../asset/nodejs_1.png)
 
@@ -36,7 +36,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 nvm install 22
 ```
 
-> 注: 使用 Ubuntu 自带的 apt 或 apt-get 包管理系统，会导致系统无法拉起 GNOME 桌面，建议使用官方下载
+> 注: 使用 Ubuntu 自带的 apt 或 apt-get 包管理器，会导致系统无法拉起 GNOME 桌面，建议使用官方下载。
 
 输入以下命令，验证是否安装成功，输出正确版本信息，说明环境配置成功。
 
@@ -48,10 +48,10 @@ node -v # Should print "v22.22.2".
 npm -v # Should print "10.9.7".
 ```
 
-由于 npm 使用官方源下载比较慢，输入以下命令，设置为国内源。
+由于 npm 使用官方源下载比较慢，输入以下命令，设置国内源。
 
 ```bash
-npm config get registry # 查看设置的源
+npm config get registry # 查看源的设置
 
 npm config set registry https://registry.npmmirror.com # 设置为国内源
 
@@ -62,7 +62,7 @@ npm config get registry # 查看是否设置成功
 
 #### 安装
 
-使用 npm 包管理器，安装 Hexo，输入一下命令：
+使用 npm 包管理器，安装 hexo，输入一下命令：
 
 ```bash
 npm install hexo-cli -g # 全局安装hexo命令行工具
@@ -85,7 +85,7 @@ INFO  Install dependencies
 INFO  Start blogging with hexo!
 ```
 
-进入博客目录，安装所需依赖
+进入博客目录，安装所需依赖：
 
 ```bash
 cd "博客目录名"
@@ -116,7 +116,7 @@ tree -L 1
 └── themes
 ```
 
-简单说明一下各文件含义：
+简单说明一下一些文件含义：
 
 - \_config.yml 为全局配置文件，网站的很多信息都在这里配置，比如说网站名称，副标题，描述，作者，语言，主题等等。具体可参考官方文档：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
 - source 里面的\_post 文件夹，存放网站的 markdown 文件，初始化之后，可以看到里面有一个 hello\-world.md 文件。同时也可以创建文件夹用来存放 md 文件所引用的图片
