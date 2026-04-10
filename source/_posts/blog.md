@@ -10,7 +10,7 @@ title: 博客搭建过程
 
 ## 使用的工具和环境
 
-在 VMware Workstation Pro 虚拟机上进行博客搭建，操作系统是 Ubuntu 22.04.5 LTS。怎么使用虚拟机、安装操作系统网络上有很多了，我就不多赘述。
+在 VMware Workstation Pro 虚拟机上进行博客搭建，操作系统是 Ubuntu 22.04.5 LTS。怎么使用虚拟机、安装操作系统网络上有很多了，不多赘述。
 
 ## hexo 框架
 
@@ -118,7 +118,7 @@ tree -L 1
 
 简单说明一下一些文件含义：
 
-- \_config.yml 为全局配置文件，网站的很多信息都在这里配置，比如说网站名称，副标题，描述，作者，语言，主题等等。具体可参考官方文档：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
+- \_config.yml 为全局配置文件，在这里可以设置网站的很多信息，比如说网站名称，副标题，描述，作者，语言，主题等等。具体可参考官方文档：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
 - source 里面的\_post 文件夹，存放网站的 markdown 文件，初始化之后，可以看到里面有一个 hello\-world.md 文件。同时也可以创建文件夹用来存放 md 文件所引用的图片
 - themes 网站主题目录，用来存放主题。hexo 有很多主题支持，更多主题：[https://hexo.io/themes](https://hexo.io/themes)
 
@@ -130,5 +130,89 @@ hexo generate        # 生成静态HTML文件到 /public 文件夹中
 hexo server          # 本地运行server服务预览，打开 http://localhost:4000 即可预览你的博客
 ```
 
-本地预览效果：
+经过自己修改\_config.yml 中的标题，副标题字段，设置新主题之后，本地预览效果：
+
 ![](../asset/hexo_2.png)
+
+## Github 文件托管
+
+![](../asset/git_1.png)
+
+```bash
+cd "博客目录"
+git init
+git add .
+git commit -m "my blog first commit"
+git remote add origin "远端github仓库地址"
+git branch -M main
+git push -u origin main
+```
+
+## Netlify 建站
+
+### 介绍
+
+Netlify 是国外免费的提供静态网站部署服务平台，能够将托管 GitHub，GitLab 等上的静态网站部署上线。
+
+### 建站步骤
+
+1. 首先注册并登录[Netlify](https://www.netlify.com/)
+   - 需要科学上网，后续可使用 Cloudflare 进行国内访问加速
+2. 新建站点
+
+   - 注册账号登录![](../asset/netlify_1.png)
+   - 新建项目![](../asset/netlify_2.png)
+   - 选择你所需要上传的 github 仓库![](../asset/netlify_3.png)
+   - 配置部署命令![](../asset/netlify_4.png)
+     > BaseDirectory 为空表示项目目录是仓库目录的根目录.
+   - 构建完成后我们就能够看到一个 URL，打开网址就是我们的个人博客了![](../asset/netlify_5.png)
+
+个人博客已经算是搭建完毕。下面需要解决的就是配置域名和访问慢的问题了。
+
+### 配置域名
+
+需要购买一个域名，我是在腾讯云上买的域名，然后把在 Netlify 上得到的域名(\*\*\*.netlify.app)进行如下设置：
+
+![](../asset/netlify_6.png)
+
+然后设置域名解析，类型为 CNAME，内容为 xxxxx.netlify.app，其中 xxxxx 为你自己设置的个性二级域名。
+
+![](../asset/netlify_7.png)
+
+设置完毕之后需要等待一段时间，因为 DNS 服务器需要一段时间来进行同步。然后，我们还需要回到 netlify 中配置一下自己的用户域名，这样的话可以在国外获得 netlify 本身的 CDN 支持。
+
+![](../asset/netlify_5.png)
+
+之后，可以通过自己配置的域名访问自己的个人博客，比如说我的博客地址是 [https://a2coder24.cn](https://a2coder24.cn) 。
+
+## ClouldFlare 加速
+
+### 介绍
+
+Netlify 提供的 CDN 加速，可以使用但国内访问还是比较慢，Cloudflare 相对于国内的七牛云、阿里云等云服务商的 CDN 速度会慢一些，但是它有免费版本，而且域名不用备案。
+
+### 国内加速步骤
+
+1. 注册并登录[Cloudflare](https://dash.cloudflare.com/)
+2. 添加站点
+   ![](../asset/cloudflare_2.png)
+3. 添加 DNS 记录
+   ![](../asset/cloudflare_1.png)
+4. 将 3 中的 Cloudflare 名称服务器，添加到域名服务提供商
+   - 以腾讯云为例：
+     这是域名配置界面
+     ![](../asset/domain_1.png)
+   - 将域名服务器从腾讯云的默认服务器改成 clouldflare 的服务器
+     ![](../asset/domain_2.png)
+     > 配置完成之后，cloudflare 会邮件通知。
+
+### 配置 https
+
+1. 确认 DNS 解析
+   ![](../asset/netlify_8.png)
+2. 它会自动安装证书，这是成功的截图
+   ![](../asset/netlify_9.png)
+
+## 最后
+
+等待一段时间，可以用浏览器输入博客域名地址，如果不挂梯子，能查看个人博客就配置成功了。
