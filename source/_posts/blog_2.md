@@ -1,5 +1,7 @@
 ---
 title: 二进制和位运算
+series: algorithm-study
+series_order: 1
 ---
 
 ## 二进制和位运算

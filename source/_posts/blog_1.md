@@ -1,5 +1,7 @@
 ---
 title: 博客搭建过程
+series: blog
+series_order: 1
 ---
 
 ## 记录自己怎么从零开始搭建一个简单的博客。

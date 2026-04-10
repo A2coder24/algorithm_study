@@ -1,5 +1,7 @@
 ---
 title: 排序算法
+series: algorithm-study
+series_order: 2
 ---
 
 ## 排序算法
