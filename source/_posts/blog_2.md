@@ -27,7 +27,7 @@ void binary_print(int n) {
 ```c++
 // 打印八进制
 // int 32位整数
-void binary_print(int n) {
+void octal_print(int n) {
     for(int i = 30; i >= 0; i -= 3) {
         cout << n >> i & 7 + '0';
     }
@@ -39,7 +39,8 @@ void binary_print(int n) {
 ```c++
 // 打印十六进制
 // int 32位整数
-void binary_print(int n) {
+void hex_print(int n) {
+    int tmp = 0;
     for(int i = 28; i >= 0; i -= 4) {
         tmp = n >> i & 15;
         if(tmp < 10) {
@@ -55,7 +56,7 @@ void binary_print(int n) {
 
 ```c++
 // int  long  long long 最小值的相反数是自己
-int binary_print(int n) {
+int opposite_print(int n) {
     return ^n + 1;
 }
 ```

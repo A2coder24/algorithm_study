@@ -161,7 +161,6 @@ Netlify 是国外免费的提供静态网站部署服务平台，能够将托管
 1. 首先注册并登录[Netlify](https://www.netlify.com/)
    - 需要科学上网，后续可使用 Cloudflare 进行国内访问加速
 2. 新建站点
-
    - 注册账号登录![](../asset/netlify_1.png)
    - 新建项目![](../asset/netlify_2.png)
    - 选择你所需要上传的 github 仓库![](../asset/netlify_3.png)
