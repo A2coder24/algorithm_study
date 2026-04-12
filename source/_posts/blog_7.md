@@ -44,31 +44,113 @@ class Node {
 ## 链表相关题目
 
 **链表反转**
+反转单链表测试链接 : [反转单链表](https://leetcode.cn/problems/reverse-linked-list/)
 
 ```c++
 Node* reverse_list(Node* head) {
-    if(!head) return head;
+    Node* prev = nullptr;
+    Node* cur = head;
+    Node* next = nullptr;
 
-    Node* pre = new Node(-1, head);
-    Node* result = new Node(-1);
-    Node* cur = nullptr;
-
-    while(pre->next) {
-        cur = pre->next;
-        pre->next = cur->next;
-
-        cur->next = result->next;
-        result->next = cur;
+    while (cur) {
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
     }
 
-    delete pre;
 
-    Node* head = result->next;
-    result->next = nullptr;
+    return prev;
+}
+```
 
-    delete result;
+**有序链表合并**
+将两个升序链表合并为一个新的 升序 链表并返回
+新链表是通过拼接给定的两个链表的所有节点组成的
+测试链接: [有序链表合并](https://leetcode.cn/problems/merge-two-sorted-lists/)
 
+```c++
+Node* merge_list(Node* head_1, Node* head_2) {
+    if(!head_1) return head_2;
+    if(!head_2) return head_1;
+
+    Node* head = nullptr;
+    if(head_1->val < head_2->val) {
+        head = head_1;
+        head_1 = head_1->next;
+    } else {
+        head = head_2;
+        head_2 = head_2->next;
+    }
+
+    Node* cur = head;
+
+    while(head_1 && head_2) {
+        if(head_1->val < head_2->val) {
+            cur->next = head_1;
+            head_1 = head_1->next;
+        } else {
+            cur->next = head_2;
+            head_2 = head_2->next;
+        }
+        cur = cur->next;
+    }
+
+    if(head_1) {
+        cur->next = head_1;
+    }
+
+    if(head_2) {
+        cur->next = head_2;
+    }
 
     return head;
 }
+```
+
+**链表相加**
+给你两个 非空 的链表，表示两个非负的整数
+它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字
+请你将两个数相加，并以相同形式返回一个表示和的链表。
+你可以假设除了数字 0 之外，这两个数都不会以 0 开头
+测试链接：[两数相加](https://leetcode.cn/problems/add-two-numbers/)
+
+```c++
+Node* add_two_numbers(Node* head_1, Node* head_2) {
+    Node* dummy = new Node(-1);
+    Node* cur = dummy;
+    int c = 0, sum = 0;
+
+    while(head_1 || head_2 || c) {
+        sum = c;
+
+        if(head_1) {
+            sum += head_1->val;
+        }
+
+        if(head_2) {
+            sum += head_2->val;
+        }
+
+        c = sum / 10;
+        cur->next = new Node(sum % 10);
+        cur = cur->next;
+    }
+
+    Node* head = dummy->next;
+    delete dummy;
+
+    return head;
+}
+```
+
+**链表分区**
+
+给你一个链表的头节点 head 和一个特定值 x
+请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+你应当 保留 两个分区中每个节点的初始相对位置
+测试链接: [链表分区](https://leetcode.cn/problems/partition-list/)
+
+```c++
+
 ```
