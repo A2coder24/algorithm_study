@@ -66,7 +66,7 @@ void insertion_sort(vector<int>& arr) {
 }
 ```
 
-### 归并排序
+#### 归并排序
 
 **递归版本**
 
