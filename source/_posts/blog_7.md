@@ -152,5 +152,35 @@ Node* add_two_numbers(Node* head_1, Node* head_2) {
 测试链接: [链表分区](https://leetcode.cn/problems/partition-list/)
 
 ```c++
+Node* partition_list(Node* head, int  mid) {
+    if(!head) return head;
+    Node* dummy_less = new Node(-1);
+    Node* tmp = dummy_less;
+    Node* dummy_greater = new Node(-1, head);
+    Node* pre = dummy_greater, * cur = head;
+
+    while(cur) {
+        if (cur->val < mid) {
+            pre->next = cur->next;
+
+            cur->next = tmp->next;
+            tmp->next = cur;
+            tmp = cur;
+
+            cur = pre->next;
+        } else {
+            pre = cur;
+            cur = cur->next;
+        }
+    }
+
+    tmp->next = dummy_greater->next;
+    delete tmp_head;
+
+    tmp = dummy_less->next;
+    delete dummy_less;
+
+    return tmp;
+}
 
 ```
