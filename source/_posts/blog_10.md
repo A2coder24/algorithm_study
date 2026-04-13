@@ -1,7 +1,7 @@
 ---
 title: 算法中的输入输出处理
 series: algorithm-study
-series_order: 8
+series_order: 9
 ---
 
 ## 算法中的输入输出处理
