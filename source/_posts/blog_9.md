@@ -18,6 +18,10 @@ typedef struct node {
 
 二叉树的遍历：前序遍历，中序遍历，后序遍历
 
+[先序遍历测试链接](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
+[中序遍历测试链接](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
+[后序遍历测试链接](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
+
 递归版本：
 
 ```c++
