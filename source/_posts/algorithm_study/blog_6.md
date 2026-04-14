@@ -2,7 +2,7 @@
 title: 时间复杂度和空间复杂度
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 时间复杂度和空间复杂度

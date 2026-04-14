@@ -2,7 +2,7 @@
 title: 二分搜索
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 二分搜索

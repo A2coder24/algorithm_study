@@ -2,7 +2,7 @@
 title: 链表
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 链表

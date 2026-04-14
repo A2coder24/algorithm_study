@@ -2,7 +2,7 @@
 title: 栈与队列
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 栈与队列

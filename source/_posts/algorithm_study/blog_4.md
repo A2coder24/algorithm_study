@@ -2,7 +2,7 @@
 title: 对数器
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 对数器-验证算法的正确性

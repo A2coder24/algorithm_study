@@ -2,7 +2,7 @@
 title: 算法中的输入输出处理
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 算法中的输入输出处理

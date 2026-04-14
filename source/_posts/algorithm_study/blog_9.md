@@ -2,7 +2,7 @@
 title: 二叉树
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 二叉树

@@ -2,7 +2,7 @@
 title: 二进制和位运算
 categories: 算法学习
 tags:
-  - 算法学习
+  - algorithm
 ---
 
 ## 二进制和位运算
