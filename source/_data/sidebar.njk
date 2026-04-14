@@ -9,14 +9,19 @@
 {% for post in site.posts.toArray() %}
   {% if post.series and post.series.trim() %}
     {% set sName = post.series.trim() %}
+    
+    {# 关键修复：Nunjucks 正确赋值方式 #}
     {% if not seriesList[sName] %}
-      {% set _ = seriesList.__setitem__(sName, []) %}
+      {% set seriesList = Object.assign({}, seriesList, {
+        (sName): []
+      }) %}
     {% endif %}
+
     {% set _ = seriesList[sName].push(post) %}
   {% endif %}
 {% endfor %}
 
-{% set seriesNames = seriesList | keys | sort %}
+{% set seriesNames = Object.keys(seriesList).sort() %}
 
 {% if seriesNames.length > 0 %}
 <div class="widget-wrap">
