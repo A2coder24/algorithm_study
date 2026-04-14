@@ -1,7 +1,8 @@
 ---
 title: 栈与队列
-series: algorithm-study
-series_order: 7
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 栈与队列

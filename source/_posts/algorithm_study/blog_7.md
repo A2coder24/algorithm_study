@@ -1,7 +1,8 @@
 ---
 title: 链表
-series: algorithm-study
-series_order: 6
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 链表

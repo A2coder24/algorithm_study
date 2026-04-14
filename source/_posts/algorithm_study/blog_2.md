@@ -1,7 +1,8 @@
 ---
 title: 二进制和位运算
-series: algorithm-study
-series_order: 1
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 二进制和位运算

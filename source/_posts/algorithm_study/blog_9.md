@@ -1,7 +1,8 @@
 ---
 title: 二叉树
-series: algorithm-study
-series_order: 8
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 二叉树

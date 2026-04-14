@@ -1,7 +1,8 @@
 ---
 title: 时间复杂度和空间复杂度
-series: algorithm-study
-series_order: 5
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 时间复杂度和空间复杂度

@@ -1,7 +1,8 @@
 ---
 title: 二分搜索
-series: algorithm-study
-series_order: 4
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 二分搜索

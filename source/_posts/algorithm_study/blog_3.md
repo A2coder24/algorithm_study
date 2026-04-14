@@ -1,7 +1,8 @@
 ---
 title: 排序算法
-series: algorithm-study
-series_order: 2
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 排序算法

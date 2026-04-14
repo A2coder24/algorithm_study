@@ -1,7 +1,12 @@
 ---
 title: 博客搭建过程
-series: blog
-series_order: 1
+categories: 博客搭建
+tags:
+  - blog
+  - hexo
+  - node.js
+  - cloudflare
+  - netlify
 ---
 
 ## 记录自己怎么从零开始搭建一个简单的博客。

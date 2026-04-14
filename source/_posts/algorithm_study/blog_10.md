@@ -1,7 +1,8 @@
 ---
 title: 算法中的输入输出处理
-series: algorithm-study
-series_order: 9
+categories: 算法学习
+tags:
+  - 算法学习
 ---
 
 ## 算法中的输入输出处理
