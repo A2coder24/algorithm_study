@@ -1384,7 +1384,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #b91dff;
+  background: #820020;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -1581,6 +1581,54 @@ pre code {
     height: var(--active-panel-height, auto);
   }
 }
+.post-toc {
+  font-size: 0.875em;
+}
+.post-toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0 2px 0 10px;
+  text-align: left;
+}
+.post-toc ol > :last-child {
+  margin-bottom: 5px;
+}
+.post-toc ol > ol {
+  padding-left: 0;
+}
+.post-toc ol a {
+  transition: all 0.2s ease-in-out;
+}
+.post-toc .nav-item {
+  line-height: 1.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-toc .nav .nav-child {
+  --height: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition-property: height, opacity, visibility;
+  transition: 0.2s ease-in-out;
+  visibility: hidden;
+}
+.post-toc .nav .active > .nav-child {
+  height: var(--height, auto);
+  opacity: 1;
+  visibility: unset;
+}
+.post-toc .nav .active > a {
+  border-bottom-color: #87daff;
+  color: #87daff;
+}
+.post-toc .nav .active-current > a {
+  color: #87daff;
+}
+.post-toc .nav .active-current > a:hover {
+  color: #87daff;
+}
 .site-author-image {
   border: 2px solid #333;
   max-width: 96px;
@@ -1595,6 +1643,28 @@ pre code {
   color: #999;
   font-size: 1em;
   margin-top: 5px;
+}
+.site-state {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  line-height: 1.4;
+}
+.site-state-item {
+  padding: 0 15px;
+}
+.site-state-item a {
+  border-bottom: 0;
+  display: block;
+}
+.site-state-item-count {
+  display: block;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+.site-state-item-name {
+  color: inherit;
+  font-size: 0.875em;
 }
 .sidebar .sidebar-button:not(:first-child) {
   margin-top: 15px;
@@ -1646,6 +1716,7 @@ pre code {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  flex-direction: column;
 }
 .links-of-blogroll-item {
   max-width: 100%;
@@ -1715,7 +1786,7 @@ pre code {
   width: 100%;
 }
 .with-love {
-  color: ;
+  color: #f00;
   display: inline-block;
   margin: 0 5px;
 }
@@ -2135,9 +2206,6 @@ pre code {
 }
 .post-meta-item-icon {
   margin-right: 3px;
-}
-.post-meta-item-text {
-  display: none;
 }
 @media (max-width: 991px) {
   .post-meta-item-text {
