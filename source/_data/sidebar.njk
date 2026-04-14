@@ -10,11 +10,11 @@
   {% if post.series and post.series.trim() %}
     {% set sName = post.series.trim() %}
     
-    {# 关键修复：Nunjucks 正确赋值方式 #}
+    {# ======================
+       这里修复了！Nunjucks 正确写法
+    ====================== #}
     {% if not seriesList[sName] %}
-      {% set seriesList = Object.assign({}, seriesList, {
-        (sName): []
-      }) %}
+      {% set seriesList[sName] = [] %}
     {% endif %}
 
     {% set _ = seriesList[sName].push(post) %}
