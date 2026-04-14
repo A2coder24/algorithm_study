@@ -106,7 +106,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -429,6 +429,108 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://a2coder24.github.io/2026/04/14/algorithm_study/blog_9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lu Gu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="代码实践录">
+      <meta itemprop="description" content="记录从基础到进阶的计算机技术学习点滴，沉淀每一步成长">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 代码实践录">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/04/14/algorithm_study/blog_9/" class="post-title-link" itemprop="url">二叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-14 11:21:22" itemprop="dateCreated datePublished" datetime="2026-04-14T11:21:22+08:00">2026-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>树节点定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    node* left;</span><br><span class="line">    node* right;</span><br><span class="line">&#125; node;</span><br></pre></td></tr></table></figure>
+
+<p>二叉树的遍历：前序遍历，中序遍历，后序遍历</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">先序遍历测试链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">中序遍历测试链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">后序遍历测试链接</a></p>
+<p>递归版本：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pre_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pre_order</span>(root-&gt;left);</span><br><span class="line">    <span class="built_in">pre_order</span>(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">in_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">in_order</span>(root-&gt;left);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">in_order</span>(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pos_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pos_order</span>(root-&gt;left);</span><br><span class="line">    <span class="built_in">pos_order</span>(root-&gt;right);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>迭代版本：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pre_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    st.<span class="built_in">push</span>(root);</span><br><span class="line"></span><br><span class="line">    node* cur = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;right)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;left)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">in_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    node* cur = root;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">nullptr</span> || !st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            st.<span class="built_in">push</span>(cur);</span><br><span class="line">            cur = cur-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"></span><br><span class="line">        cur = cur-&gt;right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pos_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    st.<span class="built_in">push</span>(root);</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; collect;</span><br><span class="line"></span><br><span class="line">    node* cur = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">while</span>(!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        collect.<span class="built_in">push</span>(cur);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;left)</span><br><span class="line">           st.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;right)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!collect.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = collect.<span class="built_in">top</span>();</span><br><span class="line">        collect.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://a2coder24.github.io/2026/04/14/blog/blog_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -616,7 +718,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://a2coder24.github.io/2026/04/14/algorithm_study/blog_9/">
+    <link itemprop="mainEntityOfPage" href="https://a2coder24.github.io/2026/04/14/algorithm_study/blog_10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -634,7 +736,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/14/algorithm_study/blog_9/" class="post-title-link" itemprop="url">二叉树</a>
+          <a href="/2026/04/14/algorithm_study/blog_10/" class="post-title-link" itemprop="url">算法中的输入输出处理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -664,14 +766,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -682,16 +784,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>树节点定义：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    node* left;</span><br><span class="line">    node* right;</span><br><span class="line">&#125; node;</span><br></pre></td></tr></table></figure>
+          <h2 id="算法中的输入输出处理"><a href="#算法中的输入输出处理" class="headerlink" title="算法中的输入输出处理"></a>算法中的输入输出处理</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;streambuf&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    std::cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    std::stringstream ss;</span><br><span class="line">    ss &lt;&lt; std::cin.<span class="built_in">rdbuf</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int n = 0;</span></span><br><span class="line">    <span class="comment">// ss &gt;&gt; n;</span></span><br><span class="line">    <span class="comment">// std::vector&lt;int&gt; arr(n);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// for(int i = 0; i &lt; n; i++) &#123;</span></span><br><span class="line">    <span class="comment">//     ss &gt;&gt; arr[i];</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    ss &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    ss.<span class="built_in">ignore</span>();</span><br><span class="line">    <span class="function">std::vector&lt;std::string&gt; <span class="title">arr</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">getline</span>(ss, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>二叉树的遍历：前序遍历，中序遍历，后序遍历</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">先序遍历测试链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">中序遍历测试链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">后序遍历测试链接</a></p>
-<p>递归版本：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pre_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pre_order</span>(root-&gt;left);</span><br><span class="line">    <span class="built_in">pre_order</span>(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">in_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">in_order</span>(root-&gt;left);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">in_order</span>(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pos_order</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pos_order</span>(root-&gt;left);</span><br><span class="line">    <span class="built_in">pos_order</span>(root-&gt;right);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;string&gt; <span class="title">split</span><span class="params">(<span class="type">const</span> string&amp; str, <span class="type">char</span> delim)</span> </span>&#123;</span><br><span class="line">    vector&lt;string&gt; res;</span><br><span class="line">    <span class="function">stringstream <span class="title">ss</span><span class="params">(str)</span></span>;</span><br><span class="line">    string temp;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">getline</span>(ss, temp, delim)) &#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>迭代版本：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pre_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    st.<span class="built_in">push</span>(root);</span><br><span class="line"></span><br><span class="line">    node* cur = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;right)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;left)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">in_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    node* cur = root;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">nullptr</span> || !st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            st.<span class="built_in">push</span>(cur);</span><br><span class="line">            cur = cur-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"></span><br><span class="line">        cur = cur-&gt;right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pos_order_iter</span><span class="params">(node* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; st;</span><br><span class="line">    st.<span class="built_in">push</span>(root);</span><br><span class="line"></span><br><span class="line">    stack&lt;node*&gt; collect;</span><br><span class="line"></span><br><span class="line">    node* cur = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">while</span>(!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        collect.<span class="built_in">push</span>(cur);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;left)</span><br><span class="line">           st.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cur-&gt;right)</span><br><span class="line">            st.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!collect.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        cur = collect.<span class="built_in">top</span>();</span><br><span class="line">        collect.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="递归和master公式"><a href="#递归和master公式" class="headerlink" title="递归和master公式"></a>递归和master公式</h2><p>递归就是一个问题可以分成与自身相似的子问题，并且问题本身与子问题都可以用同一个流程就行解决，最后随着子问题解决，问题也被解决了。</p>
+<p>master公式</p>
+<ol>
+<li>所有子问题规模相同的递归才能用master公式，T(n) &#x3D; a * T(n&#x2F;b) + O(n^c)，a、b、c都是常数</li>
+<li>如果log(b,a) &lt; c，复杂度为：O(n^c)</li>
+<li>如果log(b,a) &gt; c，复杂度为：O(n^log(b,a))</li>
+<li>如果log(b,a) &#x3D;&#x3D; c，复杂度为：O(n^c * logn)</li>
+</ol>
+<p>一个补充<br>T(n) &#x3D; 2 * T(n&#x2F;2) + O(n * logn)，时间复杂度是O(n * ((logn)的平方))，证明过程比较复杂，记住即可</p>
+<p><strong>使用递归返回数组最值</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用了分治思想</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_max</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span> INT_MIN;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> left_max = <span class="built_in">get_max</span>(arr, l, mid - <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> right_max = <span class="built_in">get_max</span>(arr, mid + <span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">max</span>(left_max, right_max), arr[mid]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -796,113 +903,6 @@
 
 <p><strong>相反数</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// int  long  long long 最小值的相反数是自己</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">opposite_print</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ^n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://a2coder24.github.io/2026/04/14/algorithm_study/blog_10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lu Gu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="代码实践录">
-      <meta itemprop="description" content="记录从基础到进阶的计算机技术学习点滴，沉淀每一步成长">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 代码实践录">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/14/algorithm_study/blog_10/" class="post-title-link" itemprop="url">算法中的输入输出处理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-04-14 11:21:22" itemprop="dateCreated datePublished" datetime="2026-04-14T11:21:22+08:00">2026-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="算法中的输入输出处理"><a href="#算法中的输入输出处理" class="headerlink" title="算法中的输入输出处理"></a>算法中的输入输出处理</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;streambuf&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    std::cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    std::stringstream ss;</span><br><span class="line">    ss &lt;&lt; std::cin.<span class="built_in">rdbuf</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int n = 0;</span></span><br><span class="line">    <span class="comment">// ss &gt;&gt; n;</span></span><br><span class="line">    <span class="comment">// std::vector&lt;int&gt; arr(n);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// for(int i = 0; i &lt; n; i++) &#123;</span></span><br><span class="line">    <span class="comment">//     ss &gt;&gt; arr[i];</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    ss &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    ss.<span class="built_in">ignore</span>();</span><br><span class="line">    <span class="function">std::vector&lt;std::string&gt; <span class="title">arr</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">getline</span>(ss, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;string&gt; <span class="title">split</span><span class="params">(<span class="type">const</span> string&amp; str, <span class="type">char</span> delim)</span> </span>&#123;</span><br><span class="line">    vector&lt;string&gt; res;</span><br><span class="line">    <span class="function">stringstream <span class="title">ss</span><span class="params">(str)</span></span>;</span><br><span class="line">    string temp;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">getline</span>(ss, temp, delim)) &#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="递归和master公式"><a href="#递归和master公式" class="headerlink" title="递归和master公式"></a>递归和master公式</h2><p>递归就是一个问题可以分成与自身相似的子问题，并且问题本身与子问题都可以用同一个流程就行解决，最后随着子问题解决，问题也被解决了。</p>
-<p>master公式</p>
-<ol>
-<li>所有子问题规模相同的递归才能用master公式，T(n) &#x3D; a * T(n&#x2F;b) + O(n^c)，a、b、c都是常数</li>
-<li>如果log(b,a) &lt; c，复杂度为：O(n^c)</li>
-<li>如果log(b,a) &gt; c，复杂度为：O(n^log(b,a))</li>
-<li>如果log(b,a) &#x3D;&#x3D; c，复杂度为：O(n^c * logn)</li>
-</ol>
-<p>一个补充<br>T(n) &#x3D; 2 * T(n&#x2F;2) + O(n * logn)，时间复杂度是O(n * ((logn)的平方))，证明过程比较复杂，记住即可</p>
-<p><strong>使用递归返回数组最值</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用了分治思想</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_max</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span> INT_MIN;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> left_max = <span class="built_in">get_max</span>(arr, l, mid - <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> right_max = <span class="built_in">get_max</span>(arr, mid + <span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">max</span>(left_max, right_max), arr[mid]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
