@@ -94,6 +94,23 @@ include:
 exclude:
 ignore:
 
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false
+  awl: 2    
+  wpm: 275
+  suffix: "mins."
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
