@@ -18,14 +18,14 @@ series_order: 1
 
 ### 介绍
 
-![](../asset/hexo_1.png)
+![](../../asset/hexo_1.png)
 hexo 是基于 Nodejs 的静态网页生成框架，它支持 Markdown 语法，编辑简单，能够快速生成 html 文件，部署简单，兼容性强。
 
 ### 环境配置
 
 使用 hexo 首先需要 Nodejs 环境，搜索官网自行选装版本(LTS)进行下载安装。
 
-![](../asset/nodejs_1.png)
+![](../../asset/nodejs_1.png)
 
 ```bash
 # Download and install nvm:
@@ -134,11 +134,11 @@ hexo server          # 本地运行server服务预览，打开 http://localhost:
 
 经过自己修改\_config.yml 中的标题，副标题字段，设置新主题之后，本地预览效果：
 
-![](../asset/hexo_2.png)
+![](../../asset/hexo_2.png)
 
 ## Github 文件托管
 
-![](../asset/git_1.png)
+![](../../asset/git_1.png)
 
 ```bash
 cd "博客目录"
@@ -161,12 +161,12 @@ Netlify 是国外免费的提供静态网站部署服务平台，能够将托管
 1. 首先注册并登录[Netlify](https://www.netlify.com/)
    - 需要科学上网，后续可使用 Cloudflare 进行国内访问加速
 2. 新建站点
-   - 注册账号登录![](../asset/netlify_1.png)
-   - 新建项目![](../asset/netlify_2.png)
-   - 选择你所需要上传的 github 仓库![](../asset/netlify_3.png)
-   - 配置部署命令![](../asset/netlify_4.png)
+   - 注册账号登录![](../../asset/netlify_1.png)
+   - 新建项目![](../../asset/netlify_2.png)
+   - 选择你所需要上传的 github 仓库![](../../asset/netlify_3.png)
+   - 配置部署命令![](../../asset/netlify_4.png)
      > BaseDirectory 为空表示项目目录是仓库目录的根目录.
-   - 构建完成后我们就能够看到一个 URL，打开网址就是我们的个人博客了![](../asset/netlify_5.png)
+   - 构建完成后我们就能够看到一个 URL，打开网址就是我们的个人博客了![](../../asset/netlify_5.png)
 
 个人博客已经算是搭建完毕。下面需要解决的就是配置域名和访问慢的问题了。
 
@@ -174,15 +174,15 @@ Netlify 是国外免费的提供静态网站部署服务平台，能够将托管
 
 需要购买一个域名，我是在腾讯云上买的域名，然后把在 Netlify 上得到的域名(\*\*\*.netlify.app)进行如下设置：
 
-![](../asset/netlify_6.png)
+![](../../asset/netlify_6.png)
 
 然后设置域名解析，类型为 CNAME，内容为 xxxxx.netlify.app，其中 xxxxx 为你自己设置的个性二级域名。
 
-![](../asset/netlify_7.png)
+![](../../asset/netlify_7.png)
 
 设置完毕之后需要等待一段时间，因为 DNS 服务器需要一段时间来进行同步。然后，我们还需要回到 netlify 中配置一下自己的用户域名，这样的话可以在国外获得 netlify 本身的 CDN 支持。
 
-![](../asset/netlify_5.png)
+![](../../asset/netlify_5.png)
 
 之后，可以通过自己配置的域名访问自己的个人博客，比如说我的博客地址是 [https://a2coder24.cn](https://a2coder24.cn) 。
 
@@ -196,23 +196,23 @@ Netlify 提供的 CDN 加速，可以使用但国内访问还是比较慢，Clou
 
 1. 注册并登录[Cloudflare](https://dash.cloudflare.com/)
 2. 添加站点
-   ![](../asset/cloudflare_2.png)
+   ![](../../asset/cloudflare_2.png)
 3. 添加 DNS 记录
-   ![](../asset/cloudflare_1.png)
+   ![](../../asset/cloudflare_1.png)
 4. 将 3 中的 Cloudflare 名称服务器，添加到域名服务提供商
    - 以腾讯云为例：
      这是域名配置界面
-     ![](../asset/domain_1.png)
+     ![](../../asset/domain_1.png)
    - 将域名服务器从腾讯云的默认服务器改成 clouldflare 的服务器
-     ![](../asset/domain_2.png)
+     ![](../../asset/domain_2.png)
      > 配置完成之后，cloudflare 会邮件通知。
 
 ### 配置 https
 
 1. 确认 DNS 解析
-   ![](../asset/netlify_8.png)
+   ![](../../asset/netlify_8.png)
 2. 它会自动安装证书，这是成功的截图
-   ![](../asset/netlify_9.png)
+   ![](../../asset/netlify_9.png)
 
 ## 最后
 

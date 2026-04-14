@@ -1,0 +1,48 @@
+{# ======================
+   文章系列组件 for NexT
+   系列间：字典序排序
+   系列内：按 series_order 自定义顺序
+====================== #}
+
+{% set seriesList = {} %}
+
+{% for post in site.posts.toArray() %}
+  {% if post.series %}
+    {% set seriesName = post.series | trim %}
+    {% if seriesName !== '' %}
+      {% if not seriesList[seriesName] %}
+        {% set seriesList[seriesName] = [] %}
+      {% endif %}
+      {% set _ = seriesList[seriesName].push(post) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% set seriesNames = Object.keys(seriesList).sort() %}
+
+{% if seriesNames.length > 0 %}
+<div class="sidebar-inner">
+  <div class="sidebar-panel">
+    <h4 class="sidebar-panel-title">文章系列</h4>
+    <ul class="sidebar-links" style="padding-left: 0; list-style: none;">
+      
+      {% for name in seriesNames %}
+      <li style="margin: 6px 0;">
+        <strong style="color: #49b1f5;">{{ name }}</strong>
+        <ul style="list-style: none; padding-left: 12px; margin: 5px 0;">
+          
+          {% set posts = seriesList[name] | sort(attribute='series_order', default=999) %}
+          {% for post in posts %}
+          <li style="font-size: 13px; margin: 3px 0;">
+            <a href="{{ url_for(post.path) }}">{{ post.title }}</a>
+          </li>
+          {% endfor %}
+          
+        </ul>
+      </li>
+      {% endfor %}
+      
+    </ul>
+  </div>
+</div>
+{% endif %}
