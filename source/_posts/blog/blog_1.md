@@ -7,7 +7,6 @@ tags:
   - node.js
   - cloudflare
   - netlify
-order: 1
 ---
 
 ## 记录自己怎么从零开始搭建一个简单的博客。

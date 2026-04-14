@@ -3,7 +3,6 @@ title: 算法中的输入输出处理
 categories: 算法学习
 tags:
   - algorithm
-order: 9
 ---
 
 ## 算法中的输入输出处理

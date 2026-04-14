@@ -3,7 +3,6 @@ title: 链表
 categories: 算法学习
 tags:
   - algorithm
-order: 6
 ---
 
 ## 链表
