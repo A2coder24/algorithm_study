@@ -3,6 +3,7 @@ title: 排序算法
 categories: 算法学习
 tags:
   - algorithm
+order: 2
 ---
 
 ## 排序算法

@@ -3,6 +3,7 @@ title: 二分搜索
 categories: 算法学习
 tags:
   - algorithm
+order: 4
 ---
 
 ## 二分搜索

@@ -3,6 +3,7 @@ title: 栈与队列
 categories: 算法学习
 tags:
   - algorithm
+order: 7
 ---
 
 ## 栈与队列

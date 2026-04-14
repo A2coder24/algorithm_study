@@ -3,6 +3,7 @@ title: 二叉树
 categories: 算法学习
 tags:
   - algorithm
+order: 8
 ---
 
 ## 二叉树
