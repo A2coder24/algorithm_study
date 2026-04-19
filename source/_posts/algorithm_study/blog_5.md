@@ -42,7 +42,7 @@ bool binary_search(std::vector<int> arr, int target){
 测试链接 : [寻找峰值](https://leetcode.cn/problems/find-peak-element/)
 
 ```c++
-int findPeakElement(vector<int>& nums) {
+int find_peak_element(vector<int>& nums) {
     if(nums.size() == 1) return 0;
     if(nums[0] > nums[1]) return 0;
     int len = nums.size() - 1;

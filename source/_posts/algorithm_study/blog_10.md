@@ -88,3 +88,144 @@ int get_max(int* arr, int l, int r) {
     return max(max(left_max, right_max), arr[mid]);
 }
 ```
+
+**小和问题**
+
+测试链接 : [小和问题](https://www.nowcoder.com/practice/edfe05a1d45c4ea89101d936cac32469)
+
+```c++
+#define N 100005
+
+int arr[N];
+int temp[N];
+
+long merge(int* arr, int l, int m, int r) {
+    long ans = 0;
+    for(int i = l, j = m + 1, sum = 0; j <= r; j++) {
+        while(i <= m && arr[i] <= arr[j]) {
+            sum += arr[i++];
+        }
+        ans += sum;
+    }
+
+    int i = l, j = m + 1, k = l;
+    while(i <= m && j<= r) {
+        if(arr[i] <= arr[j]) {
+            temp[k] = arr[i++];
+        } else {
+            temp[k] = arr[j++];
+        }
+
+        k++;
+    }
+
+    while(i <= m) {
+        temp[k++] = arr[i++];
+    }
+
+    while(j <= r) {
+        temp[k++] = arr[j++];
+    }
+
+    while(l <= r) {
+        arr[l] = temp[l];
+        l++;
+    }
+
+    return ans;
+}
+
+long merge_sort(int* arr, int l, int r) {
+    if(l == r) return 0;
+
+    int mid = l + ((r - l) >> 1);
+
+    long left = merge_sort(arr, l, mid);
+    long right = merge_sort(arr, mid + 1, r);
+
+    long cross = merge(arr, l, mid, r);
+
+    return left + right + cross;
+}
+
+void small_sum(void) {
+    stringstream ss;
+    ss << cin.rdbuf();
+
+    int n = 0;
+    ss >> n;
+
+
+    for(int i = 0; i < n; i++) {
+        ss >> arr[i];
+    }
+
+    cout << merge_sort(arr, 0, n - 1);
+
+}
+```
+
+**翻转对**
+
+测试链接: [翻转对](https://leetcode.cn/problems/reverse-pairs/)
+
+```c++
+int temp[50005] = {0};
+
+int merge(vector<int>& arr, int l, int m, int r) {
+    int ans = 0;
+
+    for(int i = l, j = m + 1, sum = 0; i <= m; i++) {
+        while(j <= r && arr[i] > (long)arr[j] << 1){
+            sum += 1;
+            j++;
+        }
+
+        ans += sum;
+    }
+
+    int i = l, j = m + 1, k = l;
+    while(i <= m && j<= r) {
+        if(arr[i] <= arr[j]) {
+            temp[k] = arr[i++];
+        } else {
+            temp[k] = arr[j++];
+        }
+
+        k++;
+    }
+    while(i <= m) {
+        temp[k++] = arr[i++];
+    }
+
+    while(j <= r) {
+        temp[k++] = arr[j++];
+    }
+
+    while(l <= r) {
+        arr[l] = temp[l];
+        l++;
+    }
+
+    return ans;
+}
+
+int merge_sort(vector<int>& arr, int l, int r) {
+    if(l == r) return 0;
+
+    int mid = (l + r) >> 1;
+
+    int left = merge_sort(arr, l, mid);
+    int right = merge_sort(arr, mid + 1, r);
+    int cross = merge(arr, l, mid, r);
+
+    return left + right + cross;
+}
+
+int reverse_pairs(vector<int>& num) {
+    int n = num.size();
+
+
+    return merge_sort(num, 0, n - 1);
+}
+```
