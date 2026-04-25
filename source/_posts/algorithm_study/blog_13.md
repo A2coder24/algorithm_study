@@ -118,3 +118,81 @@ int hamming_distance(int x, int y) {
   return cnt_ones(x ^ y);
 }
 ```
+
+不用任何算术运算，只用位运算实现加减乘除
+代码实现中你找不到任何一个算术运算符
+[测试链接](https://leetcode.cn/problems/divide-two-integers/)
+
+```c++
+int add(int a, int b) {
+  int ans = a;
+  while(b != 0) {
+    ans = a ^ b;
+
+    b = (a & b) << 1;
+
+    a = ans;
+  }
+
+  return ans;
+}
+
+int neg(int a) {
+  return add(~a, 1);
+}
+
+int sign(int a) {
+  return (a >> 31) & 1;
+}
+
+int minus(int a, int b) {
+  return add(a, neg(b));
+}
+
+int multiply(int a, int b) {
+  int sign_a = sign(a);
+  int sign_b = sign(b);
+
+  unsigned int new_a = sign_a ? neg(a) : (unsigned int)a;
+  unsigned int new_b = sign_b ? neg(b) : (unsigned int)b;
+
+  unsigned int ans = 0;
+  while(new_b != 0) {
+    if((new_b & 1) != 0) {
+      ans = add(ans, new_a);
+    }
+
+    new_a <<= 1;
+    new_b >>= 1;
+  }
+
+  return (sign_a ^ sign_b) ? neg((int)ans) : (int)ans;
+}
+
+int divide(int a, int b) {
+  if(a == INT_MIN && b == INT_MIN) return 1;
+  if(a != INT_MIN && b != INT_MIN) return div(a, b);
+  if(b == INT_MIN) return 0;
+  if(b == neg(1)) return INT_MAX;
+
+  a = add(a, sign(b) ? neg(b) : b);
+  int ans = div(a, b);
+  int offset = sign(b) ? 1 : neg(1);
+
+  return add(ans, offset);
+}
+
+int div(int a, int b) {
+  int x = sign(a) ? neg(a) : a;
+  int y = sign(b) ? neg(b) : b;
+
+  int ans = 0;
+  for(int i = 30; i >= 0; i = minus(i, 1)) {
+    if((x >> i) >= y) {
+      ans |= (1 << i);
+      x = minus(x, y << i);
+    }
+  }
+  return (sign(a) ^ sign(b)) ? neg(ans) : ans;
+}
+```

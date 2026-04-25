@@ -229,3 +229,170 @@ int reverse_pairs(vector<int>& num) {
     return merge_sort(num, 0, n - 1);
 }
 ```
+
+字符串的全部子序列
+子序列本身是可以有重复的，只是这个题目要求去重
+[测试链接](https://www.nowcoder.com/practice/92e6247998294f2c933906fdedbc6e6a)
+
+```c++
+class Solution {
+  public:
+    vector<string> generatePermutation(string s) {
+        f(s, 0, "");
+
+        return ans;
+    }
+
+    void f(const string& s, int idx, string str) {
+        ans.push_back(str);
+
+        unordered_set<char> set;
+        for (int i = idx; i < s.size(); i++) {
+            if (set.find(s[i]) != set.end()) {
+                continue;
+            }
+
+            set.insert(s[i]);
+            f(s, i + 1, str + s[i]);
+
+        }
+    }
+
+  private:
+    vector<string> ans;
+};
+```
+
+给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的组合
+答案 不能 包含重复的组合。返回的答案中，组合可以按 任意顺序 排列
+注意其实要求返回的不是子集，因为子集一定是不包含相同元素的，要返回的其实是不重复的组合
+[测试链接](https://leetcode.cn/problems/subsets-ii/)
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+
+        vector<int> path(nums.size(), 0);
+        vector<vector<int>> ans;
+
+        f(nums, 0, path, 0, ans);
+
+        return ans;
+    }
+
+    void f(const vector<int>& nums, int i, vector<int>& path, int size, vector<vector<int>>& ans) {
+        if(i == nums.size()) {
+            vector<int> temp;
+            for(int j = 0; j < size; j++) {
+                temp.push_back(path[j]);
+            }
+            ans.push_back(temp);
+        } else {
+            int j = i + 1;
+            while(j < nums.size() && nums[i] == nums[j]) {
+                j++;
+            }
+
+            f(nums, j, path, size, ans);
+            for(; i < j; i++){
+                path[size++] = nums[i];
+                f(nums, j, path, size, ans);
+            }
+        }
+    }
+};
+```
+
+没有重复项数字的全排列
+[测试链接](https://leetcode.cn/problems/permutations/)
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        f(nums, 0);
+        return ans;
+    }
+
+    void f(vector<int>& nums, int i) {
+        if(i == nums.size()) {
+            ans.push_back(nums);
+        } else {
+            for(int j = i; j < nums.size(); j++) {
+                swap(nums[i], nums[j]);
+                f(nums, i + 1);
+                swap(nums[i], nums[j]);
+            }
+        }
+
+    }
+
+private:
+    vector<vector<int>> ans;
+};
+```
+
+有重复项数组的去重全排列
+[测试链接](https://leetcode.cn/problems/permutations-ii/)
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        f(nums, 0);
+        return ans;
+    }
+
+    void f(vector<int>& nums, int i) {
+        if(i == nums.size()) {
+            ans.push_back(nums);
+        } else {
+            unordered_set<int> set;
+            for(int j = i; j < nums.size(); j++) {
+                if(set.find(nums[j]) == set.end()) {
+                    set.insert(nums[j]);
+                    swap(nums[i], nums[j]);
+                    f(nums, i + 1);
+                    swap(nums[i], nums[j]);
+                }
+            }
+        }
+    }
+
+private:
+    vector<vector<int>> ans;
+};
+```
+
+用递归函数逆序栈
+
+```c++
+#define N 1001
+int top = -1;
+int stack[N];
+
+void reverse(void) {
+    if(top == -1) {
+        return;
+    }
+
+    int element = bottom_out();
+    reverse();
+
+    stack[++top] = element;
+}
+
+int bottom_out(void) {
+    int cur = stack[top--];
+    if(top == -1) {
+        return cur;
+    }
+
+    int ans = bottom_out();
+    stack[++top] = cur;
+
+    return ans;
+}
+```
