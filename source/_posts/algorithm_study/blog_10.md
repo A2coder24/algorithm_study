@@ -396,3 +396,312 @@ int bottom_out(void) {
     return ans;
 }
 ```
+
+只使用递归给栈排序，从栈顶到栈底，从小到大
+
+```c++
+#define N 1005
+int top = -1;
+int stack[N];
+
+
+void stack_sort(void){
+    int depth = top;
+
+    int max_val, locate;
+    for(int i = depth; i >= 0; i--) {
+        max_val = INT_MIN;
+        locate = -1;
+
+        val_to_bottom(i, &max_val, &locate);
+    }
+}
+
+int val_to_bottom(int depth, int* max_val, int* locate) {
+    int cur = stack[top--];
+
+    if(cur > *max_val) {
+        *max_val = cur;
+        *locate = depth;
+    }
+
+    if(depth == 0) {
+        stack[++top] = *max_val;
+        return cur;
+    }
+
+    int val = val_to_bottom(depth - 1, max_val, locate);
+    if(*locate == depth) {
+        stack[++top] = val;
+    } else {
+        stack[++top] = cur;
+    }
+
+    return val;
+}
+```
+
+含有嵌套的表达式求值
+[测试链接](https://www.nowcoder.com/practice/c215ba61c8b1443b996351df929dc4d4)
+
+```c++
+#include <vector>
+class Solution {
+  public:
+    int solve(string s) {
+        where = 0;
+        return f(s, 0);
+    }
+
+    int f(string& str, int i) {
+        int val = 0;
+        vector<int> number;
+        vector<char> ops;
+        while (i < str.size() && str[i] != ')') {
+            if (str[i] >= '0' && str[i] <= '9') {
+                val = val * 10 + str[i++] - '0';
+            } else if (str[i] != '(') {
+                push(number, ops, val, str[i++]);
+                val = 0;
+            } else {
+                val = f(str, i + 1);
+                i = where;
+            }
+        }
+
+        push(number, ops, val, '+');
+        where = i + 1;
+        return compute(number, ops);
+    }
+
+    void push(vector<int>& digital, vector<char>& ops, int cur, int op) {
+        int n = digital.size();
+        if (n == 0 || ops[n - 1] == '+' || ops[n - 1] == '-') {
+            digital.push_back(cur);
+            ops.push_back(op);
+        } else {
+            char top_op = ops[n - 1];
+            digital[n - 1] *= cur;
+            ops[n - 1] = op;
+        }
+    }
+
+    int compute(vector<int>& number, vector<char>& ops) {
+		int n = number.size();
+		int ans = number[0];
+		for (int i = 1; i < n; i++) {
+			ans += ops[i - 1] == '+' ? number[i] : -number[i];
+		}
+		return ans;
+    }
+
+private:
+    int where;
+};
+```
+
+含有嵌套的字符串解码
+[测试链接](https://leetcode.cn/problems/decode-string/)
+
+```c++
+class Solution {
+public:
+    string decodeString(string s) {
+        int where = 0;
+
+        return f(s, 0, where);
+    }
+
+    string f(string& str, int i, int& where) {
+        int cnt = 0;
+        stringstream ss;
+        string s;
+        while (i < str.size() && str[i] != ']') {
+            if(str[i] >= 'a' && str[i] <= 'z') {
+                ss << str[i++];
+            } else if(str[i] >= '0' && str[i] <= '9') {
+                cnt = cnt * 10 + str[i++] - '0';
+            } else {
+                s = f(str, i + 1, where);
+                stringstream temp;
+                for(int i = 0; i < cnt; i++) {
+                    temp << s;
+                }
+
+                ss << temp.str();
+
+                cnt = 0;
+                i = where;
+            }
+        }
+
+        where = i + 1;
+        return ss.str();
+    }
+};
+```
+
+含有嵌套的分子式求原子数量
+[测试链接](https://leetcode.cn/problems/number-of-atoms/)
+
+```c++
+class Solution {
+public:
+    string countOfAtoms(string formula) {
+        int where = 0;
+        map<string, int> atoms_cnt = f(formula, 0, where);
+        stringstream ss;
+        for (pair<const string, int>& ky : atoms_cnt) {
+            ss << ky.first;
+            if (ky.second > 1) {
+                ss << ky.second;
+            }
+        }
+
+        return ss.str();
+    }
+
+    map<string, int> f(string& s, int i, int& where) {
+        map<string, int> ans;
+
+        stringstream ss;
+
+        map<string, int> pre;
+        int cnt = 0;
+        while (i < s.size() && s[i] != ')') {
+            if (s[i] >= 'A' && s[i] <= 'Z' || s[i] == '(') {
+                fill(ans, ss, pre, cnt);
+                ss.clear();
+                ss.str("");
+                pre.clear();
+                cnt = 0;
+
+                if (s[i] >= 'A' && s[i] <= 'Z') {
+                    ss << s[i++];
+                } else {
+                    pre = f(s, i + 1, where);
+                    i = where;
+                }
+
+            } else if (s[i] >= 'a' && s[i] <= 'z') {
+                ss << s[i++];
+            } else {
+                cnt = cnt * 10 + s[i++] - '0';
+            }
+        }
+
+        fill(ans, ss, pre, cnt);
+        where = i + 1;
+        return ans;
+    }
+
+    void fill(map<string, int>& ans, stringstream& ss, map<string, int>& pre,
+              int cnt) {
+        string str = ss.str();
+        cnt = cnt == 0 ? 1 : cnt;
+        if (!str.empty()) {
+            ans[str] += cnt;
+        }
+
+        if (!pre.empty()) {
+            for (pair<const string, int>& ky : pre) {
+                ans[ky.first] += ky.second * cnt;
+            }
+        }
+    }
+};
+```
+
+N皇后问题
+[测试链接](https://leetcode.cn/problems/n-queens-ii/)
+
+```c++
+class Solution {
+public:
+    int totalNQueens(int n) {
+        int ans = 0;
+
+        f(n, 1, ans);
+
+        return ans;
+    }
+
+    void f(const int& n, int row, int& ans) {
+        if (row == n + 1) {
+            ans += 1;
+            return;
+        }
+        for (int j = 1; j <= n; j++) {
+            if (!isValid(row, j, n)) {
+                continue;
+            }
+
+            Chessboard[row] |= (1 << (31 - j));
+            f(n, row + 1, ans);
+            Chessboard[row] = 0;
+        }
+    }
+    bool isValid(int row, int column, const int& n) {
+        if (Chessboard[row] != 0)
+            return false;
+
+        for (int i = 1; i <= n; i++) {
+            if (i == row)
+                continue;
+
+            if ((Chessboard[i] >> (31 - column)) & 1)
+                return false;
+        }
+
+        for (int i = row + 1, j = column + 1; i <= n && j <= n; i++, j++) {
+            if ((Chessboard[i] >> (31 - j)) & 1)
+                return false;
+        }
+        for (int i = row - 1, j = column - 1; i >= 1 && j >= 1; i--, j--) {
+            if ((Chessboard[i] >> (31 - j)) & 1)
+                return false;
+        }
+
+        for (int i = row + 1, j = column - 1; i <= n && j >= 1; i++, j--) {
+            if ((Chessboard[i] >> (31 - j)) & 1)
+                return false;
+        }
+
+        for (int i = row - 1, j = column + 1; i >= 1 && j <= n; i--, j++) {
+            if ((Chessboard[i] >> (31 - j)) & 1)
+                return false;
+        }
+
+        return true;
+    }
+
+private:
+    int Chessboard[11] = {0};
+};
+
+
+
+class Solution {
+public:
+    int totalNQueens(int n) {
+        int limits = (1 << n) - 1;
+        return f(limits, 0, 0, 0);
+    }
+
+    int f(int limits, int col, int left, int right) {
+        if(limits == col) return 1;
+
+        int ban = col | left | right;
+        int candidate = limits & (~ban);
+
+        int ans = 0;
+        while(candidate) {
+            int place = candidate & (-candidate);
+            candidate ^= place;
+            ans += f(limits, col | place, (left | place) >> 1, (right | place) << 1);
+        }
+
+        return ans;
+    }
+};
+```
