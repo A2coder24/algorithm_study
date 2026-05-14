@@ -129,7 +129,6 @@ int main(int argc, char** argv) {
 有装下8个苹果的袋子、装下6个苹果的袋子，一定要保证买苹果时所有使用的袋子都装满
 对于无法装满所有袋子的方案不予考虑，给定n个苹果，返回至少要多少个袋子
 如果不存在每个袋子都装满的方案返回-1
-感谢热心的同学，找到了题目1的在线测试
 测试链接 : https://www.nowcoder.com/practice/73e0552b78474a9086781e47f4e01d73
 
 ```c++
@@ -185,7 +184,7 @@ char f2(int rest, char cur) {
 
     int pick = 1;
     while(pick <= rest) {
-        if(f(rest - pick, enemy) == cur) {
+        if(f2(rest - pick, enemy) == cur) {
             return cur;
         }
 
