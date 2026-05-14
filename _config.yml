@@ -13,8 +13,7 @@ timezone: "Asia/Shanghai"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://a2coder24.github.io
-root: /
+url: http://example.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -94,23 +93,6 @@ include:
 exclude:
 ignore:
 
-
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
-
-symbols_count_time:
-  symbols: true
-  time: true
-  total_symbols: true
-  total_time: true
-  exclude_codeblock: false
-  awl: 2    
-  wpm: 275
-  suffix: "mins."
-
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
@@ -119,6 +101,4 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: git@github.com:A2coder24/a2coder24.github.io.git
-  branch: main
+  type: ""
