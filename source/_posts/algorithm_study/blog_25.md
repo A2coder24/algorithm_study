@@ -376,7 +376,82 @@ public:
 [链接测试](https://leetcode.cn/problems/find-all-people-with-secret/)
 
 ```c++
+class Solution {
+public:
+    array<int, 100005> father;
+    array<bool, 100005> screte;
 
+    void build(int n, int first) {
+        for (int i = 0; i < n; i++) {
+            father[i] = i;
+            screte[i] = false;
+        }
+
+        father[first] = 0;
+        screte[0] = true;
+    }
+
+    int find(int x) {
+        if (x != father[x]) {
+            father[x] = find(father[x]);
+        }
+
+        return father[x];
+    }
+
+    void union_set(int x, int y) {
+        int fx = find(x), fy = find(y);
+        if (fx != fy) {
+            father[fx] = fy;
+            screte[fy] |= screte[fx];
+        }
+    }
+
+    vector<int> findAllPeople(int n, vector<vector<int>>& meetings,
+                              int firstPerson) {
+        sort(meetings.begin(), meetings.end(),
+             [](const vector<int>& a, const vector<int>& b) {
+                 return a.back() < b.back();
+             });
+
+        int m = meetings.size();
+        build(n, firstPerson);
+
+        for (int l = 0, r; l < m;) {
+            r = l;
+            while (r + 1 < m && meetings[l][2] == meetings[r + 1][2]) {
+                r++;
+            }
+
+            for (int i = l; i <= r; i++) {
+                union_set(meetings[i][0], meetings[i][1]);
+            }
+
+            for (int i = l, a, b; i <= r; i++) {
+                a = meetings[i][0];
+                b = meetings[i][1];
+                if (!screte[find(a)]) {
+                    father[a] = a;
+                }
+
+                if (!screte[find(b)]) {
+                    father[b] = b;
+                }
+            }
+
+            l = r + 1;
+        }
+
+        vector<int> ans;
+        for(int i = 0; i < n; i++) {
+            if(screte[find(i)]) {
+                ans.push_back(i);
+            }
+        }
+
+        return ans;
+    }
+};
 ```
 
 好路径的数目
@@ -392,7 +467,59 @@ public:
 [测试链接](https://leetcode.cn/problems/number-of-good-paths/)
 
 ```c++
+class Solution {
+public:
+    array<int, 30005> father;
+    array<int, 30005> maxcnt;
 
+    void build(int n) {
+        for (int i = 0; i < n; i++) {
+            father[i] = i;
+            maxcnt[i] = 1;
+        }
+    }
+
+    int find(int x) {
+        if (x != father[x]) {
+            father[x] = find(father[x]);
+        }
+
+        return father[x];
+    }
+
+    int union_set(int x, int y, vector<int>& val) {
+        int fx = find(x);
+        int fy = find(y);
+
+        int ans = 0;
+        if (val[fx] > val[fy]) {
+            father[fy] = fx;
+        } else if (val[fx] < val[fy]) {
+            father[fx] = fy;
+        } else {
+            ans = maxcnt[fx] * maxcnt[fy];
+            father[fy] = fx;
+            maxcnt[fx] += maxcnt[fy];
+        }
+
+        return ans;
+    }
+    int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) {
+        sort(edges.begin(), edges.end(), [&vals](vector<int>& a, vector<int>& b) {
+            return max(vals[a.front()], vals[a.back()]) < max(vals[b.front()], vals[b.back()]);
+        });
+
+        int n = vals.size();
+        build(n);
+
+        int path = n;
+        for(vector<int>& edge : edges) {
+            path += union_set(edge.front(), edge.back(), vals);
+        }
+
+        return path;
+    }
+};
 ```
 
 尽量减少恶意软件的传播 II
@@ -410,5 +537,90 @@ initial 中每个整数都不同
 [测试链接](https://leetcode.cn/problems/minimize-malware-spread-ii/)
 
 ```c++
+class Solution {
+public:
+    array<bool, 305> virus;
+    array<int, 305> father;
+    array<int, 305> cnts;
+    array<int, 305> infect;
+    array<int, 305> size;
 
+    void buidl(int n, const vector<int>& initial) {
+        for(int i = 0; i < n; i++) {
+            father[i] = i;
+            cnts[i] = 0;
+            size[i] = 1;
+            virus[i] = false;
+            infect[i] = -1;
+        }
+
+        for(auto& val : initial) {
+            virus[val] = true;
+        }
+    }
+
+    int find(int x) {
+        if(x != father[x]) {
+            father[x] = find(father[x]);
+        }
+
+        return father[x];
+    }
+
+    void union_set(int x, int y) {
+        int fx = find(x);
+        int fy = find(y);
+
+        if(fx != fy) {
+            father[fx] = fy;
+            size[fy] += size[fx];
+        }
+    }
+    int minMalwareSpread(vector<vector<int>>& graph, vector<int>& initial) {
+        sort(initial.begin(), initial.end());
+        int n = graph.size();
+        int m = graph[0].size();
+        buidl(n, initial);
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(graph[i][j] == 1 && !virus[i] && !virus[j]) {
+                    union_set(i, j);
+                }
+            }
+        }
+
+        for(int& sick : initial) {
+            for(int neighbor = 0; neighbor < n; neighbor++) {
+                if(sick != neighbor && !virus[neighbor] && graph[sick][neighbor] == 1) {
+                    int fn = find(neighbor);
+                    if(infect[fn] == -1) {
+                        infect[fn] = sick;
+                    } else if(infect[fn] != -2 && infect[fn] != sick) {
+                        infect[fn] = -2;
+                    }
+                }
+            }
+        }
+
+        for(int i = 0; i < n; i++) {
+            if(i == find(i) && infect[i] >= 0) {
+                cnts[infect[i]] += size[i];
+            }
+        }
+
+        sort(initial.begin(), initial.end());
+
+        int ans = initial.front();
+        int max = cnts[ans];
+        for(int& sick : initial) {
+            if(cnts[sick] > max) {
+                ans = sick;
+                max = cnts[sick];
+            }
+        }
+
+        return ans;
+    }
+};
 ```
