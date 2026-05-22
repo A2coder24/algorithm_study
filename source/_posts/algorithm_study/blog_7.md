@@ -329,7 +329,7 @@ Node* copy_random_list(Node* head) {
         node->next = cur->next;
         cur->next = node;
 
-         cur = cur->next;
+        cur = cur->next;
         next = next->next;
     }
 
